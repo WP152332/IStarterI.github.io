@@ -31,9 +31,18 @@ html, body {
   color: white;
 }
 
+.fab {
+  visibility: hidden;
+}
+
 #Side {
   height: 100vh;
   width: 70px;
+}
+
+#Side a {
+  z-index: 3;
+  position: relative;
 }
 
 #SideBar {
@@ -59,12 +68,13 @@ html, body {
 
 #ExplainContent a {
   height: 20px;
-  width: auto;
   padding: 25px 0;
   color: #FFFFFF;
   vertical-align: center;
   font-size: 20px;
   display: block;
+  clear:both;
+  float:left;
 }
 
 #XContent {

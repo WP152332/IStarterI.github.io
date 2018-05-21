@@ -3,14 +3,14 @@ h1 {
   color: #00B992;
 }
 
+a {
+  text-decoration: none;
+}
+
 span {
   height: 70vh;
   font-size: 150px;
   writing-mode:vertical-lr;
-}
-
-a {
-  text-decoration: none;
 }
 
 .Controller {
