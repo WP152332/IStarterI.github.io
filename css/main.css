@@ -1,11 +1,5 @@
-html, body {
-  position: relative;
-  margin: 0;
-  padding: 0;
-}
-
 h1 {
-  opacity: 0.5;
+  opacity: 0.8;
   color: #00B992;
 }
 
@@ -15,27 +9,18 @@ span {
   writing-mode:vertical-lr;
 }
 
-label {
-  opacity: 0.5;
+a {
+  text-decoration: none;
+}
+
+.Controller {
+  opacity: 0.8;
   color: #00B992;
   cursor: pointer;
 }
 
-#Wrapper {
-  height: 100vh;
-  width: 100%;
-  display: table;
-  background: rgba(25,25,25,0.9);
-}
-
-#Content {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-}
-
 img {
-  opacity: 0.5;
+  opacity: 0.8;
   height: 70vh;
   border: 5px solid #00B992;
   border-radius: 100%;
