@@ -2,25 +2,60 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>시작점에 오신 것을 환영합니다.</title>
+    <title></title>
+
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/Base.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <script type="text/javascript" src="./script/Base.js"></script>
+    <script type="text/javascript" src="./extras/jquery.min.1.7.js"></script>
+    <script type="text/javascript" src="./extras/modernizr.2.5.3.min.js"></script>
+
   </head>
   <body>
     <div id="Wrapper">
       <div id="Side"></div>
       <div id="Content">
-        <h1 id="Intro">어서오세요! 당신을 기다렸습니다.</h1>
-        <span>
-          <a id="Prev" class="Controller">◀</a>
-          <a id="ViewLink" href="./Me.html">
-            <img src="./img/Me.jpg" id="View">
-          </a>
-          <a id="Next" class="Controller">▶</a>
-        </span>
+        <div id="Book">
+          <div class="flipbook-viewport">
+            <div class="container">
+              <div id="BookScale" class="flipbook" style="height: 80%; width: 60%;">
+                <div style="background-image:url(img/MeTitle.png)"></div>
+                <div style="background-image:url(img/MeText1.png)"></div>
+                <div style="background-image:url(img/Me.jpg)"></div>
+                <div style="background-image:url(img/Me.jpg)"></div>
+                <div style="background-image:url(img/Me.jpg)"></div>
+                <div style="background-image:url(img/Me.jpg)"></div>
+                <div style="background-image:url(img/Me.jpg)"></div>
+                <div style="background-image:url(img/Me.jpg)"></div>
+                <div style="background-image:url(img/Me.jpg)"></div>
+                <div style="background-image:url(img/Me.jpg)"></div>
+                <div style="background-image:url(img/Me.jpg)"></div>
+                <div style="background-image:url(img/Me.jpg)"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <script type="text/javascript">
+
+    function loadApp() {
+    	$('.flipbook').turn({
+    			autoCenter: true
+    	});
+      $('.flipbook').turn('size', '60vw', '80vh');
+    }
+
+    yepnope({
+    	test : Modernizr.csstransforms,
+    	yep: ['./lib/turn.js'],
+    	nope: ['./lib/turn.html4.min.js'],
+    	both: ['css/Basic.css'],
+    	complete: loadApp
+    });
+
+    </script>
   </body>
-  <script type="text/javascript" src="./script/Base.js"></script>
 </html>
