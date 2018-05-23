@@ -1,5 +1,5 @@
 window.onload = function() {
-  if($('.flipbook') != null) {
+  if(document.getElementById("BookScale") != null) {
     window.addEventListener("resize", function() {
       $('.flipbook').turn('size', '60vw', '80vh');
     });
