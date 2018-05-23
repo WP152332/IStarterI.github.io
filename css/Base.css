@@ -37,10 +37,6 @@ a {
   color: white;
 }
 
-.fab {
-  visibility: hidden;
-}
-
 #Side {
   height: 100vh;
   width: 70px;
@@ -86,10 +82,11 @@ a {
 }
 
 #XContent {
+  z-index: 10;
   position: absolute;
   right: 0;
 }
 
-#SNS .icon{
-  margin: 0;
+.SideSNS {
+  display: none;
 }
