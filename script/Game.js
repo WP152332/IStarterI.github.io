@@ -1,5 +1,5 @@
 var CharacterX = 2;
-var Score = 10000;
+var Score = 0;
 var Bullet = 10;
 var Map = [];
 var BulletM = [];
