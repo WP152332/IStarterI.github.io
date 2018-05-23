@@ -74,7 +74,7 @@ setInterval(function() {
 
 setInterval(function() {
   document.getElementById("GameInform").innerHTML
-  = "Score : " + Score + "<br>Bullet : " + Bullet + "<br>SpeedUp : " + SpeedUp  + "<br>Ghost : " + Ghost;
+  = "Score : " + Score + "<br>Bullet : " + Bullet + "<br>SpeedUp : " + SpeedUp  + "<br>Ghost : " + Ghost + "<br>--------------------";
   for(var x = 0; x < 5; x++) {
     for(var y = 0; y < 6; y++) {
       BulletM[x][y] = BulletM[x][y + 1];
@@ -164,7 +164,7 @@ function Move(Direction) {
 function ItemUse(Option) {
   switch (Option) {
     case 0: Bullet += 50; break;
-    case 1: SpeedUp += 20; break;
+    case 1: if(SpeedUp <= 979) SpeedUp += 20; break;
     case 2: SpeedUp -= 20; break;
     case 3:
       if(CharacterColor=="none") CharacterColor = "white";
