@@ -3,9 +3,9 @@ var Score = 0;
 var Bullet = 10;
 var Map = [];
 var BulletM = [];
-var color = ["none", "none", "none", "none", "none", "none", "red", "yellow", "green", "black"];
+var color = ["none", "none", "none", "none", "none", "none", "red", "yellow", "green", "black", "magenta"];
 var Time = 0;
-
+var SpeedUp = 0;
 for(var i = 0; i < 5; i++) {
   var tempM = [];
   var tempBM = [];
@@ -29,9 +29,10 @@ setInterval(function() {
   Time++;
   if(Map[CharacterX][6] > 5) {
     alert('앙 주금');
-    window.open('about:blank','_self').self.close();
+    CharacterX = -100;
+    window.location.reload();
   }
-  if(Time % (Math.max(25,(120 - Score / 100))) == 0) {
+  if(Time % (Math.max(25,(100 - Score / 50 - SpeedUp))) == 0) {
     for(var x = 0; x < 5; x++) {
       for(var y = 6; y > 0; y--) {
        Map[x][y] = Map[x][y - 1];
@@ -82,9 +83,10 @@ setInterval(function() {
 
 function keycheck(evt){
     var keyCode = evt.keyCode;
+    if(keyCode == 38) Up();
     if(keyCode == 37) Left();
     if(keyCode == 39) Right();
-    if(keyCode == 38) Up();
+    if(keyCode == 32) SpeedUp += 5;
 }
 
 function Left() {
