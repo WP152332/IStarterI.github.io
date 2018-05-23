@@ -35,8 +35,8 @@ setInterval(function() {
      }
     document.getElementById("Map" + x + c).style.background = color;
     }
-    Map[x][0] = Math.floor(Math.random() * 6);
-    while(Map[x][0] == 6) Map[x][0] = Math.floor(Math.random()*6);
+    Map[x][0] = Math.floor(Math.random() * 9);
+    while(Map[x][0] == 9) Map[x][0] = Math.floor(Math.random()*9);
     var color;
     switch(Map[x][0]) {
        case 0:
