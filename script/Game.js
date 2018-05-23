@@ -25,6 +25,14 @@ setInterval(function() {
   for(var x = 0; x < 5; x++) {
     for(var c = 1; c < 6; c++) {
      Map[x][c] = Map[x][c - 1]; 
+     var color;
+     switch(Map[x][0]) {
+      case 0: color = "none"; break;
+      case 1: color = "red"; break;
+      case 2: color = "yellow"; break;
+      case 3: color = "green"; break;
+     }
+    document.getElementById("Map" + x + 0).style.background = color;
     }
     Map[x][0] = Math.floor(Math.random() * 4);
     while(Map[x][0] == 4) Map[x][0] = Math.floor(Math.random()*4);
