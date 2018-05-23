@@ -26,10 +26,12 @@ setInterval(function() {
      switch(Map[x][c]) {
        case 0:
        case 1:
-       case 2: color = "none"; break;
-       case 3: color = "red"; break;
-       case 4: color = "yellow"; break;
-       case 5: color = "green"; break;
+       case 3:
+       case 4: 
+       case 5: color = "none"; break;
+       case 6: color = "red"; break;
+       case 7: color = "yellow"; break;
+       case 8: color = "green"; break;
      }
     document.getElementById("Map" + x + c).style.background = color;
     }
@@ -39,10 +41,12 @@ setInterval(function() {
     switch(Map[x][0]) {
        case 0:
        case 1:
-       case 2: color = "none"; break;
-       case 3: color = "red"; break;
-       case 4: color = "yellow"; break;
-       case 5: color = "green"; break;
+       case 3:
+       case 4: 
+       case 5: color = "none"; break;
+       case 6: color = "red"; break;
+       case 7: color = "yellow"; break;
+       case 8: color = "green"; break;
     }
     document.getElementById("Map" + x + 0).style.background = color;
   }
