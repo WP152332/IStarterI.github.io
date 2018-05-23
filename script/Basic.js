@@ -1,10 +1,6 @@
 /*
  * Basic sample
 */
-window.onresize = function() {
-	alert('Heaven');
-}
-
 function addPage(page, book) {
 
 	var id, pages = book.turn('pages');

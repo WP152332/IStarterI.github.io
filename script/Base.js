@@ -2,7 +2,7 @@ window.onload = function() {
   window.addEventListener("resize", function() {
     $('.flipbook').turn('size', '60vw', '80vh');
   });
-
+  
   document.getElementById("Side").innerHTML =
     '<span id="Hambuger" class="icon fa fa-bars"></span> ' +
     '<a href="main.html"><span id="Home" class="icon fas fa-home"></span></a>' +

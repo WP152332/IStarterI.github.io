@@ -9,9 +9,8 @@ span {
   writing-mode:vertical-lr;
 }
 #Wrapper {
-  display: grid !important;
-  grid-template-columns: auto auto auto !important;
-  grid-template-rows: auto auto auto !important;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
 }
 #Welcome {
   text-align: center;
