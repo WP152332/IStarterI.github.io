@@ -23,16 +23,16 @@ setInterval(function() {
   while(EneCnt == 6) EneCnt = Math.floor(Math.random() * 5) + 1;
   var result = [];
   for(var x = 0; x < 5; x++) {
-    Map[x][0] = 0;
-    document.getElementById("Map" + x + 0).style.background = "none";
-  }
-  for(var x = 0; x < EneCnt; x++) {
-    var a = Math.floor(Math.random() * 5);
-    while(a == 6 || result.indexOf(a) != -1)
-    a = Math.floor(Math.random() * 5);
-    result.push(a);
-    Map[a][0] = 1;
-    document.getElementById("Map" + a + 0).style.background = "green";
+    Map[x][0] = Math.floor(Math.random() * 4);
+    while(Map[x][0] == 4) Map[x][0] = Math.floor(Math.random()*4);
+    var color;
+    switch(Map[x][0]) {
+      case 0: color = "none"; break;
+      case 1: color = "red"; break;
+      case 2: color = "yellow"; break;
+      case 3: color = "green"; break;
+    }
+    document.getElementById("Map" + x + 0).style.background = color;
   }
 }, 500);
 
