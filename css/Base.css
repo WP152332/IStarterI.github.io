@@ -45,6 +45,7 @@ a {
   height: 100vh;
   width: 70px;
   float: left;
+  overflow:visible;
 }
 
 #Side a {
