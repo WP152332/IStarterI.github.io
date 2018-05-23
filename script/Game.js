@@ -23,6 +23,9 @@ setInterval(function() {
   while(EneCnt == 6) EneCnt = Math.floor(Math.random() * 5) + 1;
   var result = [];
   for(var x = 0; x < 5; x++) {
+    for(var c = 1; c < 6; c++) {
+     Map[x][c] = Map[x][c - 1]; 
+    }
     Map[x][0] = Math.floor(Math.random() * 4);
     while(Map[x][0] == 4) Map[x][0] = Math.floor(Math.random()*4);
     var color;
