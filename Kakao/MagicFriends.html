@@ -3,14 +3,51 @@
   <head>
     <meta charset="utf-8">
     <title>매직 프렌즈 for KAKAO</title>
-    <link rel="stylesheet" href="./css/Kakao.css">
     <link rel="stylesheet" href="./css/MF.css">
+    <link rel="stylesheet" href="./css/Kakao.css">
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   </head>
   <body>
-    <div id="Welcome">
-      <h1>어서오세요!!</h1>
-      <h3 id="nickname"></h3>
+    <div id="Login" style="display: relative;">
+      <a id="kakao-login-btn"></a>
+    </div>
+    <div id="Play">
+
     </div>
   </body>
-  <script type="text/javascript" src="./script/MF.js"></script>
+  <script type="text/javascript">
+    var userNickname;
+    var userPhoto;
+    windows.onLoad = function() {
+      if(userNickname != null) {
+        document.getElemntById("Login").style.display = "none";
+        document.getElemntById("Play").style.display = "relative";
+      }
+    }
+    //<![CDATA[
+      // 사용할 앱의 JavaScript 키를 설정해 주세요.
+      Kakao.init('d93c132dd1fbab2036f4e032a170d077');
+      // 카카오 로그인 버튼을 생성합니다.
+      Kakao.Auth.createLoginButton({
+        container: '#kakao-login-btn',
+        success: function(authObj) {
+          alert("Success");
+          alert(JSON.stringify(authObj));
+          Kakao.API.request({
+            url: '/v1/user/me',
+            success: function(res) {
+              userNickname = res.properties.nickname;
+              userPhoto = res.properties.profile_image;
+            },
+  					fail: function(error) {
+  						console.log(error);
+  					}
+          })
+        },
+        fail: function(err) {
+           alert(JSON.stringify(err));
+        }
+      });
+    //]]>
+  </script>
 </html>
