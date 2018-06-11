@@ -1,24 +1,24 @@
-var CharacterX = 2;
-var Score = 0;
-var Bullet = 10;
-var Map = [];
-var BulletM = [];
-var color = ["none", "none", "none", "none", "none", "none", "red", "yellow", "green", "black"];
-var Time = 0;
-var SpeedUp = 0;
-var CharacterColor = "white";
-var Ghost = 0;
+let CharacterX = 2;
+let Score = 0;
+let Bullet = 10;
+let Map = [];
+let BulletM = [];
+const color = ["none", "none", "none", "none", "none", "none", "red", "yellow", "green", "black"];
+let Time = 0;
+let SpeedUp = 0;
+let CharacterColor = "white";
+let Ghost = 0;
 
-for(var i = 0; i < 5; i++) {
-  var tempM = [];
-  var tempBM = [];
-  for(var j = 0; j < 7; j++) {
+for(let i = 0; i < 5; i++) {
+  let tempM = [];
+  let tempBM = [];
+  for(let j = 0; j < 7; j++) {
     tempM.push(0);
     tempBM.push(0);
-    var div = document.createElement('div');
+    let div = document.createElement('div');
     div.id = "Map" + i + j;
-    var x = i + 1;
-    var y = j + 1;
+    let x = i + 1;
+    let y = j + 1;
     div.style.gridColumn = x + "";
     div.style.gridRow = y + "";
     div.style.backgroundSize = "cover";
@@ -38,8 +38,8 @@ setInterval(function() {
   }
   if(Ghost > 0) Ghost--;
   if(Time % (Math.max(50,(100 - Score / 50 - SpeedUp))) == 0) {
-    for(var x = 0; x < 5; x++) {
-      for(var y = 6; y > 0; y--) {
+    for(let x = 0; x < 5; x++) {
+      for(let y = 6; y > 0; y--) {
        Map[x][y] = Map[x][y - 1];
        if(Map[x][y] != -1)
           document.getElementById("Map" + x + y).style.background = color[Map[x][y]];
@@ -47,7 +47,7 @@ setInterval(function() {
          document.getElementById("Map" + x + y).style.background = "orange";
        }
       }
-      var Random = Math.floor(Math.random() * 10);
+      let Random = Math.floor(Math.random() * 10);
       if(Random != 0) {
         Map[x][0] = Random;
       }
@@ -60,10 +60,10 @@ setInterval(function() {
           default: Map[x][0] = 1; break;
         }
       }
-      if(Map[x][y] != -1)
-        document.getElementById("Map" + x + y).style.background = color[Map[x][y]];
+      if(Map[x][0] != -1)
+        document.getElementById("Map" + x + 0).style.background = color[Map[x][0]];
       else {
-        document.getElementById("Map" + x + y).style.background = "orange";
+        document.getElementById("Map" + x + 0).style.background = "orange";
       }
     }
     Bullet += 1;
@@ -75,8 +75,8 @@ setInterval(function() {
 setInterval(function() {
   document.getElementById("GameInform").innerHTML
   = "Score : " + Score + "<br>Bullet : " + Bullet + "<br>SpeedUp : " + SpeedUp  + "<br>Ghost : " + Ghost + "<br>--------------------";
-  for(var x = 0; x < 5; x++) {
-    for(var y = 0; y < 6; y++) {
+  for(let x = 0; x < 5; x++) {
+    for(let y = 0; y < 6; y++) {
       BulletM[x][y] = BulletM[x][y + 1];
       BulletM[x][y + 1] = 0;
       if(BulletM[x][y]) {
@@ -133,7 +133,7 @@ setInterval(function() {
 }, 50);
 
 function keycheck(evt){
-    var keyCode = evt.keyCode;
+    let keyCode = evt.keyCode;
     if(keyCode == 38) Up();
     if(keyCode == 37) Left();
     if(keyCode == 39) Right();

@@ -1,4 +1,4 @@
-var nowSNS = false;
+let nowSNS = false;
 
 window.onload = function() {
   if(document.getElementById("BookScale") != null) {
@@ -44,7 +44,7 @@ window.onload = function() {
     '</div>' +
     '<script type="text/javascript" src="./script/Main.js"></script>';
 
-    var SNS = document.getElementsByClassName("fab");
+    let SNS = document.getElementsByClassName("fab");
 
     document.getElementById("Hambuger").onclick = function() {
       document.getElementById("Hambuger").style.visibility = "hidden";
@@ -62,9 +62,9 @@ window.onload = function() {
 }
 
 function ChangeIcon() {
-  var SMS = document.getElementsByClassName("SideMenu");
-  var SSS = document.getElementsByClassName("SideSNS");
-  for(var i = 0; i < 2; i++) {
+  let SMS = document.getElementsByClassName("SideMenu");
+  let SSS = document.getElementsByClassName("SideSNS");
+  for(let i = 0; i < 2; i++) {
     if(nowSNS) {
       SMS[i].style.display = "block";
       SSS[i].style.display = "none";

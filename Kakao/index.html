@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="#" id="kakao-login-btn">
+      <img src="./img/kakao_account_login_btn_large_wide_ov.png" alt="카카오 계정으로 로그인">
+    </a>
+  </body>
+  <script type="text/javascript">
+    //<![CDATA[
+      // 사용할 앱의 JavaScript 키를 설정해 주세요.
+      Kakao.init('d93c132dd1fbab2036f4e032a170d077');
+      // 카카오 로그인 버튼을 생성합니다.
+      Kakao.Auth.createLoginButton({
+        container: '#kakao-login-btn',
+        success: function(authObj) {
+          alert(JSON.stringify(authObj));
+        },
+        fail: function(err) {
+           alert(JSON.stringify(err));
+        }
+      });
+    //]]>
+  </script>
+</html>
