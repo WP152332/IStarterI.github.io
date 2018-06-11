@@ -6,12 +6,10 @@
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   </head>
   <body>
-    <a href="#" > </a>
-    <a id="kakao-login-btn">
-      <img src="./img/kakao_account_login_btn_large_wide_ov.png" alt="카카오 계정으로 로그인">
-    </a>
+    <a id="kakao-login-btn"></a>
   </body>
   <script type="text/javascript">
+    var accessTokenFromServer;
     //<![CDATA[
       // 사용할 앱의 JavaScript 키를 설정해 주세요.
       Kakao.init('d93c132dd1fbab2036f4e032a170d077');
@@ -21,6 +19,8 @@
         success: function(authObj) {
           alert("Success");
           alert(JSON.stringify(authObj));
+          var refreshToken = Kakao.Auth.getRefreshToken();
+          Kakao.Auth.setAccessToken(accessTokenFromServer);
         },
         fail: function(err) {
            alert(JSON.stringify(err));
