@@ -12,6 +12,7 @@
     </div>
   </body>
   <script type="text/javascript">
+    var userNickname;
     //<![CDATA[
       // 사용할 앱의 JavaScript 키를 설정해 주세요.
       Kakao.init('d93c132dd1fbab2036f4e032a170d077');
@@ -21,16 +22,16 @@
         success: function(authObj) {
           alert("Success");
           alert(JSON.stringify(authObj));
-            Kakao.API.request({
-  					  url: '/v1/user/me',
-  					  success: function(res) {
-  				  		$("#kakao-profile").append(res.properties.nickname);
-  			  		},
-  		  			fail: function(error) {
-  		  				console.log(error);
-		    			}
-            });
-  			},
+          Kakao.API.request({
+            url: '/v1/user/me',
+            success: function(res) {
+              userNickname = res.properties.nickname;
+            },
+  					fail: function(error) {
+  						console.log(error);
+  					}
+          })
+        },
         fail: function(err) {
            alert(JSON.stringify(err));
         }
