@@ -6,13 +6,16 @@
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   </head>
   <body>
-    <a id="kakao-login-btn"></a>
-    <div id="kakao-profile">
-
-    </div>
+    <form class="" action="index.html" method="post">
+      <button type="submit" name="button">
+        <a id="kakao-login-btn"></a>
+      </button>
+      <input type="hidden" name="res" value="res" id="res">
+    </form>
   </body>
   <script type="text/javascript">
     var userNickname;
+    var userPhoto;
     //<![CDATA[
       // 사용할 앱의 JavaScript 키를 설정해 주세요.
       Kakao.init('d93c132dd1fbab2036f4e032a170d077');
@@ -25,7 +28,9 @@
           Kakao.API.request({
             url: '/v1/user/me',
             success: function(res) {
+              document.getElementById("res").value = res;
               userNickname = res.properties.nickname;
+              userPhoto = res.properties.profile_image;
             },
   					fail: function(error) {
   						console.log(error);
