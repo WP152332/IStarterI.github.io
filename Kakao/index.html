@@ -7,12 +7,7 @@
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   </head>
   <body>
-    <form action="MagicFriends.html" method="post">
-      <button type="submit" name="button">
-        <a id="kakao-login-btn"></a>
-      </button>
-      <input type="hidden" name="res" value="res" id="res">
-    </form>
+    <a id="kakao-login-btn"></a>
   </body>
   <script type="text/javascript">
     var userNickname;
@@ -29,7 +24,6 @@
           Kakao.API.request({
             url: '/v1/user/me',
             success: function(res) {
-              document.getElementById("res").value = res;
               userNickname = res.properties.nickname;
               userPhoto = res.properties.profile_image;
             },
