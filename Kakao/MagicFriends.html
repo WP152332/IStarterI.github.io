@@ -58,7 +58,7 @@
             success: function(res) {
               userId = res.id,
               userNickname = res.properties.nickname;
-              userPhoto = res.properties.profile_image;
+              userPhoto = res.properties.profileImageUrl;
               writeUserData(userId, userNickname, userPhoto);
             },
   					fail: function(error) {
