@@ -33,7 +33,7 @@
   function writeUserData(userId, userName, imageUrl) {
     firebase.database().ref('users/' + userId).set({
     name: userName,
-    profile_picture: imageUrl
+    profile: imageUrl
     });
   }
 </script>
