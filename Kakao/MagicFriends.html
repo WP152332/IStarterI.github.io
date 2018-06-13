@@ -31,7 +31,6 @@
   </script>
   <script>
   function writeUserData(userId, userName, imageUrl) {
-    alert(imageUrl);
     firebase.database().ref('users/' + userId).set({
     name: userName,
     profile: imageUrl
@@ -59,7 +58,7 @@
             success: function(res) {
               userId = res.id,
               userNickname = res.properties.nickname;
-              userPhoto = res.properties.profileImageUrl;
+              userPhoto = res.properties.profile_image;
               writeUserData(userId, userNickname, userPhoto);
             },
   					fail: function(error) {
