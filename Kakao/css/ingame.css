@@ -1,0 +1,52 @@
+html, body, div {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
+}
+
+#selectUnit {
+  display: grid;
+  grid-column: 2;
+  grid-row: 2;
+  grid-template-columns: auto auto auto auto;
+}
+
+.unit {
+  border: 3px solid black;
+  margin: 1%;
+  background: #fef01b;
+  display: grid;
+  grid-template-columns: auto 10vw auto;
+  grid-template-rows: auto 10vw auto;
+}
+
+.unit span {
+  text-align: center;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.unit img {
+  background: white;
+  width: 10vw;
+  outline: 3px solid black;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.unit input {
+  padding: 0;
+  margin: 0;
+  height: 30px;
+  width: 10vw;
+  background: #f06292;
+  outline: 3px solid magenta;
+  grid-column: 2;
+  grid-row: 3;
+}

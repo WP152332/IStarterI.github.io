@@ -15,6 +15,28 @@
 
     </div>
   </body>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDmfLUrpNO1fDRv-Tuh5LxLkL169PNtKRo",
+      authDomain: "magicfriends-595ad.firebaseapp.com",
+      databaseURL: "https://magicfriends-595ad.firebaseio.com",
+      projectId: "magicfriends-595ad",
+      storageBucket: "gs://magicfriends-595ad.appspot.com",
+      messagingSenderId: "1096352204594"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+  </script>
+  <script>
+  function writeUserData(userId, username, imageUrl) {
+    firebase.database().ref('users/' + userId).set({
+    id: userId,
+    name: userName,
+    profile_picture : imageUrl
+    });
+  }
+</script>
   <script type="text/javascript">
     var userNickname;
     var userPhoto;
@@ -34,9 +56,9 @@
           Kakao.API.request({
             url: '/v1/user/me',
             success: function(res) {
+              alert(res);
               userNickname = res.properties.nickname;
               userPhoto = res.properties.profile_image;
-              checkLogin();
             },
   					fail: function(error) {
   						console.log(error);
@@ -48,12 +70,5 @@
         }
       });
     //]]>
-
-    function checkLogin() {
-      if(userNickname != null) {
-        document.getElementById("Login").style.display = "none";
-        document.getElementById("Play").style.display = "relative";
-      }
-    }
   </script>
 </html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>MagicFriendsForKakao</title>
+    <link rel="stylesheet" href="./css/ingame.css">
+  </head>
+  <body>
+    <div id="selectUnit">
+
+      <div class="unit" id="Muzi">
+        <img src="./img/Muzi.png" alt="무지">
+        <input type="button" value="선택">
+      </div>
+
+      <div class="unit" id="Corn">
+        <img src="./img/Corn.png" alt="콘">
+        <input type="button" value="선택">
+      </div>
+
+      <div class="unit" id="Apeach">
+        <img src="./img/Apeach.png" alt="어피치">
+        <input type="button" value="선택">
+      </div>
+
+      <div class="unit" id="JayG">
+        <img src="./img/JayG.png" alt="제이지">
+        <input type="button" value="선택">
+      </div>
+    </div>
+  </body>
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDmfLUrpNO1fDRv-Tuh5LxLkL169PNtKRo",
+      authDomain: "magicfriends-595ad.firebaseapp.com",
+      databaseURL: "https://magicfriends-595ad.firebaseio.com",
+      projectId: "magicfriends-595ad",
+      storageBucket: "gs://magicfriends-595ad.appspot.com",
+      messagingSenderId: "1096352204594"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+  </script>
+  <script>
+  function writeUserData(userId, name, email, imageUrl) {
+    firebase.database().ref('users/' + userId).set({
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+    });
+  }
+</script>
+</html>
