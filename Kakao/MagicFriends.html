@@ -5,14 +5,16 @@
     <title>매직 프렌즈 for KAKAO</title>
     <link rel="stylesheet" href="./css/MF.css">
     <link rel="stylesheet" href="./css/Kakao.css">
+    <link rel="stylesheet" href="./css/login.css">
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   </head>
   <body>
-    <div id="Login" style="display: relative;">
+    <p>카카오 프렌즈들의 재미있는 마법 한판!!<br>
+      <span>매직 프렌즈 For Kakao</span>
+    </p>
+    <div id="centering">
       <a id="kakao-login-btn"></a>
-    </div>
-    <div id="Play">
-
+      <img src="./img/kakao_account_login_btn_large_wide_ov.png" alt="">
     </div>
   </body>
   <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
@@ -41,35 +43,32 @@
     var userId;
     var userNickname;
     var userPhoto;
-    window.onLoad = function() {
-      checkLogin();
-    }
     //<![CDATA[
-      // 사용할 앱의 JavaScript 키를 설정해 주세요.
-      Kakao.init('d93c132dd1fbab2036f4e032a170d077');
-      // 카카오 로그인 버튼을 생성합니다.
-      Kakao.Auth.createLoginButton({
-        container: '#kakao-login-btn',
-        success: function(authObj) {
-          alert("Success");
-          alert(JSON.stringify(authObj));
-          Kakao.API.request({
-            url: '/v1/user/me',
-            success: function(res) {
-              userId = res.id,
-              userNickname = res.properties.nickname;
-              userPhoto = res.properties.profile_image;
-              writeUserData(userId, userNickname, userPhoto);
-            },
-  					fail: function(error) {
-  						console.log(error);
-  					}
-          })
-        },
-        fail: function(err) {
-           alert(JSON.stringify(err));
-        }
-      });
-    //]]>
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('d93c132dd1fbab2036f4e032a170d077');
+    // 카카오 로그인 버튼을 생성합니다.
+    Kakao.Auth.createLoginButton({
+      container: '#kakao-login-btn',
+      success: function(authObj) {
+        alert("Success");
+        alert(JSON.stringify(authObj));
+        Kakao.API.request({
+          url: '/v1/user/me',
+          success: function(res) {
+            userId = res.id,
+            userNickname = res.properties.nickname;
+            userPhoto = res.properties.profile_image;
+            writeUserData(userId, userNickname, userPhoto);
+          },
+					fail: function(error) {
+						console.log(error);
+					}
+        })
+      },
+      fail: function(err) {
+         alert(JSON.stringify(err));
+      }
+    });
+  //]]>
   </script>
 </html>

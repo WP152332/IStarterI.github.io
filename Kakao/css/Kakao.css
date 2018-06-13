@@ -10,11 +10,6 @@ body {
   grid-template-rows: auto auto auto;
 }
 
-body * {
-  grid-column: 2;
-  grid-row: 2;
-}
-
 a {
   text-align: center;
 }
