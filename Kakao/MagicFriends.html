@@ -38,9 +38,9 @@
   }
 </script>
   <script type="text/javascript">
+    var userId;
     var userNickname;
     var userPhoto;
-
     window.onLoad = function() {
       checkLogin();
     }
@@ -56,9 +56,10 @@
           Kakao.API.request({
             url: '/v1/user/me',
             success: function(res) {
-              alert(res.properties);
+              userId = res.properties.account_email;
               userNickname = res.properties.nickname;
               userPhoto = res.properties.profile_image;
+              writeUserData(userId, userNickname, userPhoto);
             },
   					fail: function(error) {
   						console.log(error);
