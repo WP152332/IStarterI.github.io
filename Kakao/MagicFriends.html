@@ -56,7 +56,7 @@
           Kakao.API.request({
             url: '/v1/user/me',
             success: function(res) {
-              userId = res.kaccount_email,
+              userId = res.id,
               userNickname = res.properties.nickname;
               userPhoto = res.properties.profile_image;
               writeUserData(userId, userNickname, userPhoto);
