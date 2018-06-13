@@ -32,7 +32,6 @@
   <script>
   function writeUserData(userId, userName, imageUrl) {
     firebase.database().ref('users/' + userId).set({
-    id: userId,
     name: userName,
     profile_picture : imageUrl
     });
@@ -57,10 +56,9 @@
           Kakao.API.request({
             url: '/v1/user/me',
             success: function(res) {
-              userId = res.properties.account_email;
               userNickname = res.properties.nickname;
               userPhoto = res.properties.profile_image;
-              writeUserData(userId, userNickname, userPhoto);
+              writeUserData("0", userNickname, userPhoto);
             },
   					fail: function(error) {
   						console.log(error);
