@@ -40,7 +40,6 @@
     let userPhoto;
     var href = window.location.href;
     var url = new URL(href);
-    var userId =  url.searchParams.get("id");
     Kakao.API.request({
       url: '/v1/user/me',
       success: function(res) {
