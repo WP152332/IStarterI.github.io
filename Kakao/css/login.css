@@ -3,7 +3,9 @@ body {
 }
 
 p {
-  font-size: 25px;
+  margin: auto auto 50px auto;
+  font-size: 2em;
+  height: 3em;
   text-align: center;
   grid-column: 2;
   grid-row: 1;
