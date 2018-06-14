@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="./css/ingame.css">
   </head>
   <body>
+    <div id="userInform">
+    </div>
     <div id="selectUnit">
 
       <div class="unit" id="Muzi">
@@ -44,12 +46,5 @@
     var database = firebase.database();
   </script>
   <script>
-  function writeUserData(userId, name, email, imageUrl) {
-    firebase.database().ref('users/' + userId).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-    });
-  }
 </script>
 </html>
