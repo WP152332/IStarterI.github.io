@@ -50,6 +50,9 @@
         console.log(error);
       }
     })
+    document.getElementById("userInform").innerHTML = userNickname + '님 환영합니다!!' + '<img src="' + userPhoto + '"alt="프로필 사진이 없습니다ㅠㅠ"/>';
+  </script>
+  <script>
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyDmfLUrpNO1fDRv-Tuh5LxLkL169PNtKRo",
@@ -63,6 +66,5 @@
     var database = firebase.database();
   </script>
   <script>
-  document.getElementById("userInform").innerHTML = userNickname + '님 환영합니다!!' + '<img src="' + userPhoto + '"alt="프로필 사진이 없습니다ㅠㅠ"/>';
   </script>
 </html>
