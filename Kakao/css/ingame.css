@@ -11,6 +11,8 @@ body {
 }
 
 #userInform {
+  margin: auto auto auto 50px;
+  font-size: 2em;
   text-align: center;
   grid-column: 2;
   grid-row: 2;
@@ -26,7 +28,7 @@ body {
 .unit {
   text-align: center;
   border: 3px solid black;
-  margin: 1%;
+  margin: 0 1%;
   background: #fef01b;
   display: grid;
   grid-template-columns: auto 75% auto;
