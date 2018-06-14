@@ -47,7 +47,7 @@
         let welcomeText = "";
         if(userPhoto != null)
           welcomeText = '<img id="profile" src=' + userPhoto + '/><br>';
-        let welcomeText += userNickname + "님 환영합니다!!";
+        welcomeText += userNickname + "님 환영합니다!!";
         document.getElementById("userInform").innerHTML = welcomeText;
       },
       fail: function(error) {
