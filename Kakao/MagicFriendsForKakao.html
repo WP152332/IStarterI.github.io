@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>MagicFriendsForKakao</title>
-    <link rel="stylesheet" href="./css/ingame.css">
+    <link rel="stylesheet" href="./css/ingame.css?ver=1">
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   </head>
   <body>
@@ -44,13 +44,12 @@
         userId = res.id,
         userNickname = res.properties.nickname;
         userPhoto = res.properties.profile_image;
-        alert(userNickname);
+        document.getElementById("userInform").innerHTML = userNickname + '님 환영합니다!!' + '<img src="' + userPhoto + '"alt="프로필 사진이 없습니다ㅠㅠ"/>';
       },
       fail: function(error) {
         console.log(error);
       }
     })
-    document.getElementById("userInform").innerHTML = userNickname + '님 환영합니다!!' + '<img src="' + userPhoto + '"alt="프로필 사진이 없습니다ㅠㅠ"/>';
   </script>
   <script>
     // Initialize Firebase
