@@ -19,3 +19,8 @@ span {
   grid-row: 2;
   text-align: center;
 }
+
+img {
+  grid-column: 2;
+  position: absolute;
+}
