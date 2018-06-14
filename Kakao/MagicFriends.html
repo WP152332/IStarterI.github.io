@@ -55,8 +55,8 @@
             userId = res.id,
             userNickname = res.properties.nickname;
             userPhoto = res.properties.profile_image;
-            location.href="./MagicFriendsForKakao.html";
             writeUserData(userId, userNickname, userPhoto);
+            location.href="./MagicFriendsForKakao.html";
           },
 					fail: function(error) {
 						console.log(error);
