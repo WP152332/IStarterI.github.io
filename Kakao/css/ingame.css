@@ -7,7 +7,7 @@ html, body, div {
 body {
   display: grid;
   grid-template-columns: 10% 80% 10%;
-  grid-template-rows: auto auto auto 50% auto auto auto;
+  grid-template-rows: 25% 50% 25%;
 }
 
 #userInform {
@@ -26,6 +26,7 @@ body {
 }
 
 .unit {
+  box-sizing : border-box;
   text-align: center;
   border: 3px solid black;
   margin: 0 1%;
