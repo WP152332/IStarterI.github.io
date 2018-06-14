@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>MagicFriendsForKakao</title>
     <link rel="stylesheet" href="./css/ingame.css">
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   </head>
   <body>
     <div id="userInform">
@@ -33,9 +34,25 @@
   </body>
   <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
   <script>
+    Kakao.init('d93c132dd1fbab2036f4e032a170d077');
+    let userId;
+    let userNickname;
+    let userPhoto;
     var href = window.location.href;
     var url = new URL(href);
-    var userid =  url.searchParams.get("id");
+    var userId =  url.searchParams.get("id");
+    Kakao.API.request({
+      url: '/v1/user/me',
+      success: function(res) {
+        userId = res.id,
+        userNickname = res.properties.nickname;
+        userPhoto = res.properties.profile_image;
+        alert(userNickname);
+      },
+      fail: function(error) {
+        console.log(error);
+      }
+    })
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyDmfLUrpNO1fDRv-Tuh5LxLkL169PNtKRo",
