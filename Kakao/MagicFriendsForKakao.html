@@ -38,8 +38,6 @@
     let userId;
     let userNickname;
     let userPhoto;
-    var href = window.location.href;
-    var url = new URL(href);
     Kakao.API.request({
       url: '/v1/user/me',
       success: function(res) {
@@ -65,5 +63,6 @@
     var database = firebase.database();
   </script>
   <script>
-</script>
+  document.getElementById("userInform").innerHTML() = userNickname + '님 환영합니다!!' + '<img src="' + userPhoto + '"alt="프로필 사진이 없습니다ㅠㅠ"/>';
+  </script>
 </html>
