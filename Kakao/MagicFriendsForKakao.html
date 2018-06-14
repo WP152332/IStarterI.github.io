@@ -44,7 +44,10 @@
         userId = res.id,
         userNickname = res.properties.nickname;
         userPhoto = res.properties.profile_image;
-        document.getElementById("userInform").innerHTML = userNickname + '님 환영합니다!!' + '<br><img src="' + userPhoto + '"alt="프로필 사진이 없습니다ㅠㅠ"/>';
+        let welcomeText = userNickname + "님 환영합니다!!";
+        if(userPhoto != null)
+          welcomeText += '<br><img src="' + userPhoto + '/>';
+        document.getElementById("userInform").innerHTML = welcomeText;
       },
       fail: function(error) {
         console.log(error);
