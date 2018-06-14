@@ -24,3 +24,13 @@ img {
   grid-column: 2;
   position: absolute;
 }
+
+#Lion {
+  bottom: 45px;
+  left: 15px;
+}
+
+#Neo {
+  top: 45px;
+  right: 15px;
+}
