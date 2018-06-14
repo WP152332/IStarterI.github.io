@@ -5,24 +5,6 @@
     <title>MagicFriendsForKakao</title>
     <link rel="stylesheet" href="./css/ingame.css?ver=1">
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-    <script>
-      Kakao.init('d93c132dd1fbab2036f4e032a170d077');
-      let userId;
-      let userNickname;
-      let userPhoto;
-      Kakao.API.request({
-        url: '/v1/user/me',
-        success: function(res) {
-          userId = res.id,
-          userNickname = res.properties.nickname;
-          userPhoto = res.properties.profile_image;
-          document.getElementById("userInform").innerHTML = userNickname + '님 환영합니다!!' + '<br><img src="' + userPhoto + '"alt="프로필 사진이 없습니다ㅠㅠ"/>';
-        },
-        fail: function(error) {
-          console.log(error);
-        }
-      })
-    </script>
   </head>
   <body>
     <div id="userInform">
@@ -51,6 +33,24 @@
     </div>
   </body>
   <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+  <script>
+    Kakao.init('d93c132dd1fbab2036f4e032a170d077');
+    let userId;
+    let userNickname;
+    let userPhoto;
+    Kakao.API.request({
+      url: '/v1/user/me',
+      success: function(res) {
+        userId = res.id,
+        userNickname = res.properties.nickname;
+        userPhoto = res.properties.profile_image;
+        document.getElementById("userInform").innerHTML = userNickname + '님 환영합니다!!' + '<br><img src="' + userPhoto + '"alt="프로필 사진이 없습니다ㅠㅠ"/>';
+      },
+      fail: function(error) {
+        console.log(error);
+      }
+    })
+  </script>
   <script>
     // Initialize Firebase
     var config = {
