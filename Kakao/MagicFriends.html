@@ -49,19 +49,18 @@
     Kakao.Auth.createLoginButton({
       container: '#kakao-login-btn',
       success: function(authObj) {
-        Kakao.API.request({
-          url: '/v1/user/me',
-          success: function(res) {
-            userId = res.id,
-            userNickname = res.properties.nickname;
-            userPhoto = res.properties.profile_image;
-            writeUserData(userId, userNickname, userPhoto);
-            location.href="./MagicFriendsForKakao.html";
-          },
-					fail: function(error) {
-						console.log(error);
-					}
-        })
+      Kakao.API.request({
+        url: '/v1/api/talk/profile',
+        success: function(res) {
+          userId = res.id,
+          userNickname = res.properties.nickname;
+          userPhoto = res.properties.profile_image;
+          writeUserData(userId, userNickname, userPhoto);
+        },
+        fail: function(error) {
+          console.log(error);
+        }
+      });
       },
       fail: function(err) {
          alert(JSON.stringify(err));
