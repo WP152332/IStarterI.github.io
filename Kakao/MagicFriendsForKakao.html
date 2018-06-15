@@ -39,7 +39,7 @@
     let userNickname;
     let userPhoto;
     Kakao.API.request({
-      url: '/v1/user/me',
+      url: '/v1/api/talk/profile',
       success: function(res) {
         userId = res.id,
         userNickname = res.properties.nickname;
