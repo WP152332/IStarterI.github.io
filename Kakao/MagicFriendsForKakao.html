@@ -39,7 +39,7 @@
     let userNickname;
     let userPhoto;
     Kakao.API.request({
-      url: '/v1/api/talk/profile',
+      url: '/v1/user/me',
       success: function(res) {
         userId = res.id,
         userNickname = res.properties.nickname;
@@ -62,6 +62,12 @@
       },
       fail: function(error) {
         console.log(error);
+      }
+    });
+    KaKao.API.request({
+      url: '/v1/api/talk/profile'
+      success: function(res) {
+        alert(res.nickName);
       }
     })
   </script>
