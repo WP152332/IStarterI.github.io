@@ -49,14 +49,14 @@ window.onload = function() {
     <script>
     let SNS = document.getElementsByClassName("fab");
 
-    document.getElementById("Hambuger").onclick = function() {
+    document.getElementById("Hambuger").onClick = function() {
       document.getElementById("Hambuger").style.visibility = "hidden";
       document.getElementById("SideBar").style.width = "280px";
       document.getElementById("SideContent").style.visibility = "visible";
       document.getElementById("ExplainContent").style.display = "block";
     }
 
-    document.getElementById("X").onclick = function() {
+    document.getElementById("X").onClick = function() {
       document.getElementById("Hambuger").style.visibility = "visible";
       document.getElementById("SideBar").style.width = "70px";
       document.getElementById("SideContent").style.visibility = "hidden";

@@ -156,7 +156,8 @@ function promotion(unit, target, player) {
     while(changeTo != "Rook" && changeTo != "Knight" && changeTo != "Bishop" && changeTo != "Queen") {
       changeTo = prompt('Rook or Knight or Bishop or Queen');
     }
-    let uns = isWhichUnit(unit.style.gridColumn, unit.style.gridRow);
+    let uns =
+      isWhichUnit(Number(unit.style.gridColumn[0]), Number(unit.style.gridRow[0]));
     uns.job = changeTo;
     unit.className = changeTo;
     unit.src = "./img/" + changeTo + player + ".svg";
