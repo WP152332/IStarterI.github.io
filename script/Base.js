@@ -44,8 +44,9 @@ window.onload = function() {
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="./script/Main.js"></script>;
-
+    <script type="text/javascript" src="./script/Main.js">
+    </script>
+    <script>
     let SNS = document.getElementsByClassName("fab");
 
     document.getElementById("Hambuger").onclick = function() {
@@ -61,7 +62,8 @@ window.onload = function() {
       document.getElementById("SideContent").style.visibility = "hidden";
       document.getElementById("ExplainContent").style.display = "none";
     }
-  `;
+    </script>
+    `;
   }
 }
 
