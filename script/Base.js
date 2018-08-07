@@ -1,15 +1,10 @@
 let nowSNS = false;
 
 window.onload = function() {
-  if(document.getElementById("BookScale") != null) {
-    window.addEventListener("resize", function() {
-      $('.flipbook').turn('size', '60vw', '80vh');
-    });
-  }
   if(document.getElementById("Side")) {
   document.getElementById("Side").innerHTML =
   `
-    <span id="Hambuger" class="icon fa fa-bars"></span>
+    <span id="Hambuger" class="icon fa fa-bars" onclick="toggle()"></span>
     <div class="SideMenu">
       <a href="main.html"><span id="Home" class="icon fas fa-home"></span></a>
       <a href="Me.html"><span id="User" class="icon fas fa-user-alt"></span></a>
@@ -40,30 +35,27 @@ window.onload = function() {
           </div>
         </div>
         <div id="XContent">
-          <span id="X" class="icon fas fa-times"></span>
+          <span id="X" class="icon fas fa-times" onclick="toggle()"></span>
         </div>
       </div>
     </div>
     <script type="text/javascript" src="./script/Main.js">
     </script>
-    <script>
-    let SNS = document.getElementsByClassName("fab");
-
-    document.getElementById("Hambuger").onClick = function() {
-      document.getElementById("Hambuger").style.visibility = "hidden";
-      document.getElementById("SideBar").style.width = "280px";
-      document.getElementById("SideContent").style.visibility = "visible";
-      document.getElementById("ExplainContent").style.display = "block";
-    }
-
-    document.getElementById("X").onClick = function() {
-      document.getElementById("Hambuger").style.visibility = "visible";
-      document.getElementById("SideBar").style.width = "70px";
-      document.getElementById("SideContent").style.visibility = "hidden";
-      document.getElementById("ExplainContent").style.display = "none";
-    }
-    </script>
     `;
+  }
+}
+
+function toggle() {
+  if(document.getElementById("Hambuger").style.visibility != "hidden") {
+    document.getElementById("Hambuger").style.visibility = "hidden";
+    document.getElementById("SideBar").style.width = "280px";
+    document.getElementById("SideContent").style.visibility = "visible";
+    document.getElementById("ExplainContent").style.display = "block";
+  } else {
+    document.getElementById("Hambuger").style.visibility = "visible";
+    document.getElementById("SideBar").style.width = "70px";
+    document.getElementById("SideContent").style.visibility = "hidden";
+    document.getElementById("ExplainContent").style.display = "none";
   }
 }
 
