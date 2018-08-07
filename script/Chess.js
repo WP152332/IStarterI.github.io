@@ -400,7 +400,6 @@ function checkInfield(x, y) {
 }
 
 function checkFull(x, y) {
-  if(document.getElementById("unit" + x + y) && document.getElementById("unit" + x + y).className == "King" && document.getElementById("unit" + x + y).owner == turn) alert("체크얌");
   return document.getElementById("unit" + x + y) != null;
 }
 
