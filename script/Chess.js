@@ -16,6 +16,10 @@ let angpa = 0;
 let AttackMap = [];
 //유닛들 King = 0, 8 && 1, 7
 let Units = [[],[]];
+let clickx;
+let clicky;
+let checkCount = [[1],[1]];
+let checkMode = false;
 //Unit 클래스 생성
 function Unit(job, player, x, y) {
   this.job = job;
@@ -101,7 +105,6 @@ function changeAttackMap() {
     }
   }
   isCheck();
-  reset();
 }
 
 //유닛 추가
@@ -136,6 +139,8 @@ function addView(unit, name, player, x, y) {
     if(player != turn) return;
     //이전 힌트 삭제
     reset();
+    clickx = x;
+    clicky = y;
     //네임에 따라
     switch (name) {
       case "Pawn":
@@ -163,16 +168,15 @@ function addView(unit, name, player, x, y) {
 //유닛 이동
 function addMove(name, player, x, y, tx, ty) {
   //유닛과 이동할 칸 설정
+  if(clickx != x || clicky != y) return;
   let unit = document.getElementById("unit" + x + y);
   let target = document.getElementById("front" + tx + ty);
   //타겟을 위로 뛰워 색 구분
   target.style.zIndex = "5";
   //타겟 클릭 시
   target.onclick = function() {
-      if(checkCheck("move", player, x, y, tx, ty)) {
-        reset();
-        return;
-      }
+    checkCount[0] = 0;
+    checkCount[1] = 0;
     //움직였으므로 캐슬링 불가
     if(unit.enableCastling != null) unit.enableCastling = null;
     //승진 가능성 확인
@@ -188,11 +192,11 @@ function addMove(name, player, x, y, tx, ty) {
     //유닛 상태 변경
     Units[player - 1][unit.number].x = tx;
     Units[player - 1][unit.number].y = ty;
-    //이동 화면 제거
-    reset();
     //앙파상 불가능
     angpa = 0;
     changeAttackMap();
+    //이동 화면 제거
+    reset();
     //만약 폰 움직였으면 앙파상 가능
     if(name == "Pawn" && Math.abs(ty - y) == 2)
     angpa = Number("" + tx + ty + player);
@@ -203,16 +207,15 @@ function addMove(name, player, x, y, tx, ty) {
 
 //유닛 공격
 function addAttack(player, x, y, tx, ty) {
+  if(clickx != x || clicky != y) return;
   //유닛과 타겟 선정
   let unit = document.getElementById("unit" + x + y);
   let tarunit = document.getElementById("unit" + tx + ty);
   let target = document.getElementById("front" + tx + ty);
   target.style.zIndex = "5";
   target.onclick = function() {
-    if(checkCheck("attack", player, x, y, tx, ty)) {
-      reset();
-      return;
-    }
+    checkCount[0] = 0;
+    checkCount[1] = 0;
     //승진 가능 확인
     unit = promotion(unit, target, player);
     turn = 3 - turn;
@@ -231,11 +234,11 @@ function addAttack(player, x, y, tx, ty) {
     //유닛 상태 변경
     Units[player - 1][unit.number].x = tx;
     Units[player - 1][unit.number].y = ty;
-    //이동 화면 제거
-    reset();
     //앙파상 불가능
     angpa = 0;
     changeAttackMap();
+    //이동 화면 제거
+    reset();
   }
   //배경 생성
   changeBackground(tx, ty, player);
@@ -257,17 +260,21 @@ function promotion(unit, target, player) {
 function castling(x, y, player) {
   if(checkKingSideCastling(player)) {
     if(player == 1) {
+      if(!checkMode && !checkCheck("move", player, x, y, x + 2, y))
       castleMove(x, y, x + 2, player);
     }
     else {
+      if(!checkMode && !checkCheck("move", player, x, y, x - 2, y))
       castleMove(x, y, x - 2, player);
     }
   }
   if(checkQueenSideCastling(player)) {
     if(player == 1) {
+      if(!checkMode && !checkCheck("move", player, x, y, x - 2, y))
       castleMove(x, y, x - 2, player);
     }
     else {
+      if(!checkMode && !checkCheck("move", player, x, y, x + 2, y))
       castleMove(x, y, x + 2, player);
     }
   }
@@ -282,33 +289,42 @@ function castleMove(x, y, tx, player) {
     turn = 3 - turn;
 
     if(tx > x) {
+      //유닛 상태 바꾸고
       let rook = document.getElementById("unit" + 8 + y);
       rook.style.gridColumn = (tx - 1) + "";
       rook.id = "unit" + (tx - 1) + y;
       rook = addView(rook, "Rook", player, tx - 1, y);
-      let unr = isWhichUnit(8, y);
-      unr.x = tx - 1;
-      unr.y = y;
+      //유닛 상태 변경
+      Units[player - 1][rook.number].x = tx - 1;
+      //앙파상 불가능
+      angpa = 0;
+      changeAttackMap();
+      //이동 화면 제거
       reset();
     } else {
       let rook = document.getElementById("unit" + 1 + y);
       rook.style.gridColumn = (tx + 1) + "";
       rook.id = "unit" + (tx + 1) + y;
       rook = addView(rook, "Rook", player, tx + 1, y);
-      let unr = isWhichUnit(8, y);
-      unr.x = tx + 1;
-      unr.y = y;
+      //유닛 상태 변경
+      Units[player - 1][rook.number].x = tx + 1;
+      //앙파상 불가능
+      angpa = 0;
+      changeAttackMap();
+      //이동 화면 제거
       reset();
     }
     unit.style.gridColumn = tx + "";
     unit.id = "unit" + tx + y;
     unit = addView(unit, "King", player, tx, y);
-    let uns = isWhichUnit(x, y);
-    uns.x = tx;
-    uns.y = y;
-    reset();
+    //유닛 상태 변경
+    Units[player - 1][unit.number].x = tx;
+    //앙파상 불가능
     angpa = 0;
     changeAttackMap();
+    //이동 화면 제거
+    reset();
+    if(!checkCount[2 - player]) alert("체크메이트");
   }
   changeBackground(tx, y, player);
 }
@@ -359,11 +375,11 @@ function angpasang(x, y, tx, ty, player) {
     //유닛 상태 변경
     Units[player - 1][unit.number].x = tx;
     Units[player - 1][unit.number].y = ty;
-    //이동 화면 제거
-    reset();
     //앙파상 불가능
     angpa = 0;
     changeAttackMap();
+    //이동 화면 제거
+    reset();
   }
   changeBackground(tx, ty, player);
 }
@@ -375,21 +391,26 @@ function addPawn(x, y, player) {
   if(Math.floor(angpa / 100) == x - 1 || Math.floor(angpa / 100) == x + 1) {
     if(angpa % 10 != player) {
       if(Math.floor(angpa % 100 / 10) == y) {
+        if(!checkMode && !checkCheck("angpa", player, x, y, x + 1, y + addNum))
         angpasang(x, y, Math.floor(angpa / 100) == x - 1 ? x - 1 : x + 1, y + addNum, player);
       }
     }
   }
   if (checkFull(player, x + 1, y + addNum) && checkEnemy(x + 1, y + addNum, player)) {
-    addAttack(player, x, y, (x + 1), (y + addNum));
+    if(!checkMode && !checkCheck("attack", player, x, y, x + 1, y + addNum))
+      addAttack(player, x, y, (x + 1), (y + addNum));
   }
   if (checkFull(player, x - 1, y + addNum) && checkEnemy(x - 1, y + addNum, player)) {
-    addAttack(player, x, y, (x - 1), (y + addNum));
+    if(!checkMode && !checkCheck("attack", player, x, y, x - 1, y + addNum))
+      addAttack(player, x, y, (x - 1), (y + addNum));
   }
   if (!checkFull(0, x, y + addNum)) {
-    addMove("Pawn", player, x, y, x, y + addNum);
+    if(!checkMode && !checkCheck("move", player, x, y, x, y + addNum))
+      addMove("Pawn", player, x, y, x, y + addNum);
     if ((y == 2 && player == 1) || ((y == 7) && player == 2)) {
-      if (checkInfield(x, y + addNum) && !checkFull(player, x, y + 2 * addNum)) {
-        addMove("Pawn", player, x, y, x, y + 2 * addNum);
+      if (checkInfield(x, y + addNum) && !checkFull(0, x, y + 2 * addNum)) {
+        if(!checkMode && !checkCheck("move", player, x, y, x, y + 2 * addNum))
+          addMove("Pawn", player, x, y, x, y + 2 * addNum);
       }
     }
   }
@@ -401,12 +422,15 @@ function addLinear(name, x, y, xd, yd, player) {
   while(checkInfield(px, py)) {
     if(checkFull(player, px, py)) {
       if(checkEnemy(px, py, player)) {
-        addAttack(player, x, y, px, py);
-        changeBackground(px, py, player);
+        if(!checkMode && !checkCheck("attack", player, x, y, px, py)) {
+          addAttack(player, x, y, px, py);
+          changeBackground(px, py, player);
+        }
       }
       break;
     }
-    addMove(name, player, x, y, px, py);
+    if(!checkMode && !checkCheck("move", player, x, y, px, py))
+      addMove(name, player, x, y, px, py);
     px += xd;
     py += yd;
   }
@@ -427,10 +451,12 @@ function addKnight(x, y, player) {
       if (Math.abs(i) + Math.abs(j) == 3 && checkInfield(px, py)) {
         if(checkFull(player, px, py)) {
           if(checkEnemy(px, py, player)) {
+            if(!checkMode && !checkCheck("attack", player, x, y, px, py))
             addAttack(player, x, y, px, py);
           }
           continue;
         }
+        if(!checkMode && !checkCheck("move", player, x, y, px, py))
         addMove("Knight", player, x, y, px, py);
       }
     }
@@ -452,10 +478,12 @@ function addKing(x, y, player) {
       if (checkInfield(px, py)) {
         if (checkFull(player, px, py)) {
           if (checkEnemy(px, py, player)) {
+          if(!checkMode && !checkCheck("attack", player, x, y, px, py))
             addAttack(player, x, y, px, py);
           }
           continue;
         }
+        if(!checkMode && !checkCheck("move", player, x, y, px, py))
         addMove("King", player, x, y, px, py);
       }
     }
@@ -483,6 +511,17 @@ function reset() {
       document.getElementById("front" + i + j).style.zIndex = 0;
       document.getElementById("front" + i + j).onclick = null;
     }
+  }
+  checkCheck("",0,0,0,0);
+  if(!checkCount[turn - 1]) {
+    if(turn == 1 && isCheck() % 2)
+      alert("체크메이트");
+    else if(turn == 1)
+      alert("스테일메이트");
+    if(turn == 2 && isCheck() >= 2)
+      alert("체크메이트");
+    else if(turn == 2)
+      alert("스테일메이트");
   }
 }
 
@@ -539,22 +578,16 @@ function checkCheck(mode, player, x, y, tx, ty) {
       Units[player - 1][unit.number].x = tx;
       Units[player - 1][unit.number].y = ty;
       Units[2 - player][target.number].alive = false;
+      checkMode = true;
       changeAttackMap();
+      checkMode = false;
       if(player == 1) {
         if(isCheck() % 2) {
-          alert("할 수 없습니다.");
           checking = true;
-        }
-        else if(isCheck() >= 2) {
-          alert("체크!");
         }
       } else if(player == 2) {
         if(isCheck() >= 2) {
-          alert("할 수 없습니다.");
           checking = true;
-        }
-        else if(isCheck() % 2) {
-          alert("체크!");
         }
       }
       unit.style.gridColumn = x + "";
@@ -575,22 +608,16 @@ function checkCheck(mode, player, x, y, tx, ty) {
       //유닛 상태 변경
       Units[player - 1][unit.number].x = tx;
       Units[player - 1][unit.number].y = ty;
+      checkMode = true;
       changeAttackMap();
+      checkMode = false;
       if(player == 1) {
         if(isCheck() % 2) {
-          alert("할 수 없습니다.");
           checking = true;
-        }
-        else if(isCheck() >= 2) {
-          alert("체크!");
         }
       } else if(player == 2) {
         if(isCheck() >= 2) {
-          alert("할 수 없습니다.");
           checking = true;
-        }
-        else if(isCheck() % 2) {
-          alert("체크!");
         }
       }
       unit.style.gridColumn = x + "";
@@ -600,8 +627,42 @@ function checkCheck(mode, player, x, y, tx, ty) {
       Units[player - 1][unit.number].x = x;
       Units[player - 1][unit.number].y = y;
       break;
+    case "angpa":
+      unit = document.getElementById("unit" + x + y);
+      target = document.getElementById("unit" + tx + y);
+      //유닛 상태 바꾸고
+      unit.style.gridColumn = tx + "";
+      unit.style.gridRow = ty + "";
+      target.id = "temp";
+      unit.id = "unit" + tx + ty;
+      //유닛 상태 변경
+      Units[player - 1][unit.number].x = tx;
+      Units[player - 1][unit.number].y = ty;
+      Units[2 - player][target.number].alive = false;
+      checkMode = true;
+      changeAttackMap();
+      checkMode = false;
+      if(player == 1) {
+        if(isCheck() % 2) {
+          checking = true;
+        }
+      } else if(player == 2) {
+        if(isCheck() >= 2) {
+          checking = true;
+        }
+      }
+      unit.style.gridColumn = x + "";
+      unit.style.gridRow = y + "";
+      unit.id = "unit" + x + y;
+      target.id = "unit" + tx + y;
+      //유닛 상태 변경
+      Units[player - 1][unit.number].x = x;
+      Units[player - 1][unit.number].y = y;
+      Units[2 - player][target.number].alive = true;
+      break;
     default:
       break;
   }
+  if(!checking) checkCount[player - 1]++;
   return checking;
 }
