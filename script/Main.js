@@ -22,5 +22,5 @@ document.getElementById("Next").onclick = function() {
   else i = 0;
   document.getElementById("Intro").innerHTML = introUrl[i];
   document.getElementById("View").src = "./img/" + imgUrl[i] + ".jpg";
-  document.getElementById("ViewLink").href = "./" + imgUrl[i] + ".html";
+  document.getElementById("ViewLink").href = "./" + hrefUrl[i] + ".html";
 }
