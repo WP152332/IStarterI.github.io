@@ -5,6 +5,7 @@ html, body {
 }
 
 a {
+  -webkit-box-sizing: content-box;
   text-decoration: none;
 }
 

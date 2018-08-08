@@ -12,10 +12,13 @@ let p2u = 0;
 let turn = 1;
 //앙파상이 가능한 턴인지
 let angpa = 0;
+let checkMode = false;
 //공격 맵 (체크메이트 확인용)
 let AttackMap = [];
 //유닛들 King = 0, 8 && 1, 7
 let Units = [[],[]];
+let canMoveMap = [];
+let canAttackMap = [];
 //Unit 클래스 생성
 function Unit(job, player, x, y) {
   this.job = job;
@@ -156,8 +159,13 @@ function addView(unit, name, player, x, y) {
         break;
       case "King": addKing(x, y, player); break;
     }
+    clicker();
   }
   return unit;
+}
+
+function functionName() {
+
 }
 
 //유닛 이동
@@ -169,10 +177,6 @@ function addMove(name, player, x, y, tx, ty) {
   target.style.zIndex = "5";
   //타겟 클릭 시
   target.onclick = function() {
-      if(checkCheck("move", player, x, y, tx, ty)) {
-        reset();
-        return;
-      }
     //움직였으므로 캐슬링 불가
     if(unit.enableCastling != null) unit.enableCastling = null;
     //승진 가능성 확인
@@ -209,10 +213,6 @@ function addAttack(player, x, y, tx, ty) {
   let target = document.getElementById("front" + tx + ty);
   target.style.zIndex = "5";
   target.onclick = function() {
-    if(checkCheck("attack", player, x, y, tx, ty)) {
-      reset();
-      return;
-    }
     //승진 가능 확인
     unit = promotion(unit, target, player);
     turn = 3 - turn;
@@ -427,11 +427,15 @@ function addKnight(x, y, player) {
       if (Math.abs(i) + Math.abs(j) == 3 && checkInfield(px, py)) {
         if(checkFull(player, px, py)) {
           if(checkEnemy(px, py, player)) {
+            if(!checkMode && checkCheck("attack", player, x, y, px, py))
             addAttack(player, x, y, px, py);
+            else addAttack(player, x, y, px, py);
           }
           continue;
         }
+        if(!checkMode && checkCheck("move", player, x, y, px, py))
         addMove("Knight", player, x, y, px, py);
+        else addMove("Knight", player, x, y, px, py);
       }
     }
   }
@@ -539,7 +543,9 @@ function checkCheck(mode, player, x, y, tx, ty) {
       Units[player - 1][unit.number].x = tx;
       Units[player - 1][unit.number].y = ty;
       Units[2 - player][target.number].alive = false;
+      checkMode = true;
       changeAttackMap();
+      checkMode = false;
       if(player == 1) {
         if(isCheck() % 2) {
           alert("할 수 없습니다.");
@@ -575,7 +581,9 @@ function checkCheck(mode, player, x, y, tx, ty) {
       //유닛 상태 변경
       Units[player - 1][unit.number].x = tx;
       Units[player - 1][unit.number].y = ty;
+      checkMode = true;
       changeAttackMap();
+      checkMode = false;
       if(player == 1) {
         if(isCheck() % 2) {
           alert("할 수 없습니다.");
