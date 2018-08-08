@@ -91,3 +91,9 @@ a {
 .SideSNS {
   display: none;
 }
+
+span {
+  height: 70vh;
+  font-size: 150px;
+  writing-mode:vertical-lr;
+}
