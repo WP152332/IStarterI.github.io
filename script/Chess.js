@@ -512,6 +512,16 @@ function reset() {
       document.getElementById("front" + i + j).onclick = null;
     }
   }
+  if(!checkCount[turn - 1]) {
+    if(turn == 1 && isCheck() % 2)
+      alert("체크메이트");
+    else if(turn == 1)
+      alert("스테일메이트");
+    else if(turn == 2 && isCheck() >= 2)
+      alert("체크메이트");
+    else if(turn == 2)
+      alert("스테일메이트");
+  }
 }
 
 function isWhichUnit(x, y) {
@@ -541,10 +551,10 @@ function checkEnemy(x, y, player) {
 
 function isCheck() {
   let cnt = 0;
-  if(AttackMap[1][Units[1][8].x][Units[1][8].y]) {
+  if(AttackMap[1][Units[0][8].x][Units[0][8].y]) {
     cnt += 1;
   }
-  if(AttackMap[2][Units[0][7].x][Units[0][7].y]) {
+  if(AttackMap[2][Units[1][7].x][Units[1][7].y]) {
     cnt += 2;
   }
   return cnt;
