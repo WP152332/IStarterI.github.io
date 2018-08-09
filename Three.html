@@ -14,10 +14,16 @@
       <div id="Side"></div>
       <div id="Content">
         <div id="Book" style="grid-column:2;grid-row:2">
-          <span style="color:#62f092" class="fas fa-spinner"></span>
-          <h1 style="color:#62f092">추억을 쌓는 중입니다.</h1>
+          <span id="spinner" style="color:#62f092" class="fas fa-spinner"></span>
+          <h1 style="color:#62f092">아직 추억을 쌓는 중입니다.</h1>
         </div>
       </div>
     </div>
   </body>
+  <script type="text/javascript">
+    let a = 0;
+    setInterval(function() {
+      spinner.style.transform = "rotate(" + a++ + "deg)";
+    }, 1);
+  </script>
 </html>
