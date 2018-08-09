@@ -15,7 +15,7 @@
       <div id="Content">
         <div id="Book" style="grid-column:2;grid-row:2">
           <span id="spinner" style="color:#62f092" class="fas fa-spinner"></span>
-          <h1 style="color:#62f092">아직 추억을 쌓는 중입니다.</h1>
+          <h1 style="color:#62f092">아직 추억을 쌓고 있는 중입니다.</h1>
         </div>
       </div>
     </div>
@@ -23,7 +23,8 @@
   <script type="text/javascript">
     let a = 0;
     setInterval(function() {
-      spinner.style.transform = "rotate(" + a++ + "deg)";
+      spinner.style.transform = "rotate(" + a + "deg)";
+      a += 0.5;
     }, 1);
   </script>
 </html>

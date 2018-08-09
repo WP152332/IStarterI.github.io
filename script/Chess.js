@@ -260,21 +260,21 @@ function promotion(unit, target, player) {
 function castling(x, y, player) {
   if(checkKingSideCastling(player)) {
     if(player == 1) {
-      if(!checkMode && !checkCheck("move", player, x, y, x + 2, y))
+      if(!checkMode && !checkCheck("move", player, x, y, x, y) && !checkCheck("move", player, x, y, x + 1, y) && !checkCheck("move", player, x, y, x + 2, y))
       castleMove(x, y, x + 2, player);
     }
     else {
-      if(!checkMode && !checkCheck("move", player, x, y, x - 2, y))
+      if(!checkMode && !checkCheck("move", player, x, y, x, y) && !checkCheck("move", player, x, y, x - 1, y) && !checkCheck("move", player, x, y, x - 2, y))
       castleMove(x, y, x - 2, player);
     }
   }
   if(checkQueenSideCastling(player)) {
     if(player == 1) {
-      if(!checkMode && !checkCheck("move", player, x, y, x - 2, y))
+      if(!checkMode && !checkCheck("move", player, x, y, x, y) && !checkCheck("move", player, x, y, x - 1, y) && !checkCheck("move", player, x, y, x - 2, y))
       castleMove(x, y, x - 2, player);
     }
     else {
-      if(!checkMode && !checkCheck("move", player, x, y, x + 2, y))
+      if(!checkMode && !checkCheck("move", player, x, y, x, y) && !checkCheck("move", player, x, y, x + 1, y) && !checkCheck("move", player, x, y, x + 2, y))
       castleMove(x, y, x + 2, player);
     }
   }
@@ -391,7 +391,7 @@ function addPawn(x, y, player) {
   if(Math.floor(angpa / 100) == x - 1 || Math.floor(angpa / 100) == x + 1) {
     if(angpa % 10 != player) {
       if(Math.floor(angpa % 100 / 10) == y) {
-        if(!checkMode && !checkCheck("angpa", player, x, y, x + 1, y + addNum))
+        if(!checkMode && !checkCheck("angpa", player, x, y, Math.floor(angpa / 100) == x - 1 ? x - 1 : x + 1, y + addNum))
         angpasang(x, y, Math.floor(angpa / 100) == x - 1 ? x - 1 : x + 1, y + addNum, player);
       }
     }
@@ -514,13 +514,13 @@ function reset() {
   }
   if(!checkCount[turn - 1]) {
     if(turn == 1 && isCheck() % 2)
-      alert("체크메이트");
+      alert("체크메이트 Player 2의 승리!!");
     else if(turn == 1)
-      alert("스테일메이트");
+      alert("스테일메이트 - 무승부!!");
     else if(turn == 2 && isCheck() >= 2)
-      alert("체크메이트");
+      alert("체크메이트 Player 1의 승리!!");
     else if(turn == 2)
-      alert("스테일메이트");
+      alert("스테일메이트 - 무승부!!");
   }
 }
 
