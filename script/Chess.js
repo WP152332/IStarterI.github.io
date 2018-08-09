@@ -200,6 +200,7 @@ function addMove(name, player, x, y, tx, ty) {
     //만약 폰 움직였으면 앙파상 가능
     if(name == "Pawn" && Math.abs(ty - y) == 2)
     angpa = Number("" + tx + ty + player);
+    if(isCheck()) alert("체크!");
   }
   //배경 바꾸기
   changeBackground(tx, ty, player);
@@ -239,6 +240,7 @@ function addAttack(player, x, y, tx, ty) {
     changeAttackMap();
     //이동 화면 제거
     reset();
+    if(isCheck()) alert("체크!");
   }
   //배경 생성
   changeBackground(tx, ty, player);
@@ -324,7 +326,6 @@ function castleMove(x, y, tx, player) {
     changeAttackMap();
     //이동 화면 제거
     reset();
-    if(!checkCount[2 - player]) alert("체크메이트");
   }
   changeBackground(tx, y, player);
 }
