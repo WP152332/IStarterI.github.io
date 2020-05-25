@@ -14,7 +14,7 @@ window.onload = function() {
     </div>
     <div class="SideSNS">
       <a href="https://github.com/IStarterI/"><span id="Git" class="icon fab fa-github"></span></a>
-      <a href="https://www.facebook.com/profile.php?id=100011013164003"><span id="Facebook" class="icon fab fa-facebook"></span></a>
+      <a href="https://www.facebook.com"><span id="Facebook" class="icon fab fa-facebook"></span></a>
       <a href="https://www.instagram.com/qkdwl462/"><span id="Instagram" class="icon fab fa-instagram"></span></a>
     </div>
     <a><span id="Change" class="icon fa fa-exchange-alt" onclick="ChangeIcon()"></span></a>
