@@ -32,7 +32,7 @@ document.getElementById("Map" + CharacterX + "6").style.background = CharacterCo
 setInterval(function() {
   Time++;
   if(Map[CharacterX][6] > 5 && Ghost == 0) {
-    alert('앙 주금');
+    alert('죽었습니다.');
     CharacterX = -100;
     window.location.reload();
   }
